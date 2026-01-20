@@ -48,9 +48,14 @@ A private, searchable dashboard to review your usage habits.
 2. Enable **Developer mode**.
 3. Click **Load unpacked** and select this directory.
 
-## 🔒 Privacy First
-- **Zero Tracking**: We collect no user data. All timing data stays locally on your device.
-- **Clean Code**: No obfuscation, purely functional and transparent.
+## �️ Development & Store Submission Notes
+
+To ensure high quality and pass strict browser store validations (like the Firefox Add-ons Store), the following polish and security measures have been implemented:
+
+- **Security Compliance**: Replaced all `innerHTML` assignments with safer DOM methods (`createElement`, `textContent`) to prevent potential XSS vulnerabilities.
+- **Manifest Standards**: Updated to a strict Manifest V3 structure with explicit `browser_specific_settings` and a minimum Firefox version of **113.0** to support `declarativeNetRequest`.
+- **Assets Optimization**: Standardized all extension icons to be perfectly square (16x16, 48x48, 128x128) to meet store UI requirements.
+- **Data Policy**: Explicitly declared `data_collection_permissions: false` in the manifest to confirm the project's commitment to zero user tracking.
 
 ---
 **Developed by Jaggu**  
