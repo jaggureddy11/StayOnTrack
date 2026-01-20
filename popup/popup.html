@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+  <title>StayOnTrack</title>
+</head>
+
+<body>
+  <div class="app-container">
+    <header>
+      <img src="../icons/icon48.png" alt="Zen" class="logo">
+      <div class="brand">
+        <span class="brand-name">StayOnTrack</span>
+        <span class="status-dot"></span>
+      </div>
+    </header>
+
+    <main>
+      <div class="timer-section">
+        <span id="hostname-display">Focusing...</span>
+        <h1 id="timer-display">00:00:00</h1>
+        <div class="visual-meter">
+          <div id="progress-bar" class="meter-fill"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-item">
+          <div class="control-info">
+            <span class="control-title">YouTube Shield</span>
+            <span class="control-desc">Ads & Distractions</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="youtube-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- History Panel (Hidden by default) -->
+      <div id="history-panel" class="history-panel hidden">
+        <div class="history-header">
+          <span class="history-title">Activity Log</span>
+          <button id="close-history" class="icon-btn">✕</button>
+        </div>
+        <div class="search-box">
+          <input type="text" id="history-search" placeholder="Search websites...">
+        </div>
+        <div id="history-list" class="history-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <button id="view-history" class="text-link">View Stats</button>
+      <p>Developed by Jaggu</p>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

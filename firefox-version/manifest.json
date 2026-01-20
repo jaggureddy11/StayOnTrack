@@ -1,0 +1,47 @@
+{
+    "manifest_version": 2,
+    "name": "PureStream for YouTube (Firefox)",
+    "version": "1.0.0",
+    "description": "Enhances your YouTube experience by reducing intrusive sponsored content and auto-skipping ads.",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "*://*.youtube.com/*",
+        "*://*.googlevideo.com/*",
+        "*://*.doubleclick.net/*",
+        "*://*.googleadservices.com/*"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "browser_action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "48": "icons/icon48.png",
+            "96": "icons/icon96.png"
+        }
+    },
+    "icons": {
+        "48": "icons/icon48.png",
+        "96": "icons/icon96.png"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "purestream@example.com"
+        }
+    }
+}
