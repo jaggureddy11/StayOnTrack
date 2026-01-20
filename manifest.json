@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "StayOnTrack: Simple Productivity",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "author": "Jaggu <jaggureddy2004@gmail.com>",
   "description": "Stay focused with website-specific timers and automatic protection.",
   "permissions": [
@@ -58,8 +58,9 @@
       "id": "stayontrack@jaggu.com",
       "strict_min_version": "113.0",
       "data_collection_permissions": {
-        "is_data_collection_allowed": false,
-        "is_opt_in": false
+        "required": [
+          "none"
+        ]
       }
     }
   }
