@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeHistoryBtn.addEventListener('click', () => {
         historyPanel.classList.add('hidden');
         isHistoryVisible = false;
-        lastRenderedData = ""; // Reset to force re-render next time
+        lastRenderedData = "";
     });
 
     // Search History
@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderHistory(query = '') {
         if (!isHistoryVisible) return;
 
-        // Create a signature of the current data + query to avoid flickering
         const dataSignature = JSON.stringify(allHistoryData) + query;
         if (dataSignature === lastRenderedData) return;
         lastRenderedData = dataSignature;
@@ -63,33 +62,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const sortedSites = Object.entries(allHistoryData)
             .sort((a, b) => b[1] - a[1]);
 
-        // Build HTML string first for performance
-        let html = '';
+        historyList.innerHTML = '';
         let found = false;
 
         sortedSites.forEach(([domain, ms]) => {
             if (query && !domain.toLowerCase().includes(query)) return;
             found = true;
-            html += `
-                <div class="history-item">
-                    <span class="site-name" title="${domain}">${domain}</span>
-                    <span class="item-time">${formatTime(ms)}</span>
-                </div>
-            `;
+
+            const item = document.createElement('div');
+            item.className = 'history-item';
+
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'site-name';
+            nameSpan.title = domain;
+            nameSpan.textContent = domain;
+
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'item-time';
+            timeSpan.textContent = formatTime(ms);
+
+            item.appendChild(nameSpan);
+            item.appendChild(timeSpan);
+            historyList.appendChild(item);
         });
 
         if (!found) {
-            html = '<div style="text-align:center; padding:40px 20px; color:#71717a; font-size:0.85rem;">No activity found</div>';
+            const emptyMsg = document.createElement('div');
+            emptyMsg.style.textAlign = 'center';
+            emptyMsg.style.padding = '40px 20px';
+            emptyMsg.style.color = '#71717a';
+            emptyMsg.style.fontSize = '0.85rem';
+            emptyMsg.textContent = 'No activity found';
+            historyList.appendChild(emptyMsg);
         }
 
-        historyList.innerHTML = html;
         historyList.scrollTop = currentScroll;
     }
 
     function formatTime(totalMs) {
         const seconds = Math.floor((totalMs / 1000) % 60);
         const minutes = Math.floor((totalMs / (1000 * 60)) % 60);
-        const hours = Math.floor((totalMs / (1000 * 60 * 60))); // Allow hours to grow
+        const hours = Math.floor((totalMs / (1000 * 60 * 60)));
 
         return [
             hours.toString().padStart(2, '0'),
@@ -112,11 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const hostname = response.hostname || "Browser";
             allHistoryData = response.allTimes || {};
 
-            // Update main timer
             timerDisplay.textContent = formatTime(totalMs);
             hostnameDisplay.textContent = hostname;
 
-            // Update progress bar
             if (progressBar) {
                 const twentyMinutesMs = 20 * 60 * 1000;
                 const percent = Math.min((totalMs / twentyMinutesMs) * 100, 100);
@@ -129,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Sync History live if panel is open
             if (isHistoryVisible) {
                 renderHistory(historySearch.value.toLowerCase());
             }
