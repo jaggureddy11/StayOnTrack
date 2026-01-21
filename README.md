@@ -1,4 +1,4 @@
-# 🧘 StayOnTrack: Elevate Your Digital Focus
+# StayOnTrack: Elevate Your Digital Focus
 
 **StayOnTrack** is a high-performance productivity companion designed to break the cycle of mindless browsing and digital fatigue. Built with a "Privacy-First" philosophy, it runs entirely on your local machine—tracking your habits, protecting your eyes, and shielding you from distractions.
 
@@ -19,7 +19,7 @@ Breaks the "muscle memory" of impulsive browsing.
 - **Reflective Overlay**: Visiting distracting sites (Instagram, Reddit, X, etc.) triggers a 5-second mindful countdown.
 - **Intentionality**: Forces you to decide if you really need to be on that site right now.
 
-### 4. 🛡️ YouTube Shield
+### 4. 🚫 YouTube Shield
 A cleaner, distraction-free YouTube experience.
 - **Ad Blocking**: Automatically skips and blocks YouTube ads at the network and DOM levels.
 - **Minimalist UI**: Focus only on the content that matters.
